@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const warehouseController = require('../controllers/warehouse-controller.js');
 
 router
     .route('/')
     .get((req, res) => {
         res.status(200).send('warehouse get')
     })
-    .post((req, res) => {
-        res.status(200).send('warehouse post')
-    })
+    .post(warehouseController.addWarehouse);
 
 router
     .route('/:warehouseId')
