@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { addOne } = require('../model/warehouse-model.js');
 
 router
     .route('/')
@@ -7,7 +8,17 @@ router
         res.status(200).send('warehouse get')
     })
     .post((req, res) => {
-        res.status(200).send('warehouse post')
+        const warehouse = req.body;
+        if (warehouse) {
+            const result = addOne(req.body);
+            if (!result.error) {
+                res.status(200).json(result);
+            } else {
+                res.status(400).json(result);
+            }
+        } else {
+            res.status(400).send({message: 'improperly formatted request'});
+        }
     })
 
 router
