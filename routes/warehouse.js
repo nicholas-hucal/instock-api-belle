@@ -4,9 +4,7 @@ const warehouseController = require('../controllers/warehouse-controller.js');
 
 router
     .route('/')
-    .get((req, res) => {
-        res.status(200).send('warehouse get')
-    })
+    .get(warehouseController.getAllWarehouses)
     .post(warehouseController.addWarehouse);
 
 router

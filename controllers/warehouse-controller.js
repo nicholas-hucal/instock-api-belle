@@ -3,6 +3,22 @@ const warehouseModel = require('../models/warehouse-model');
 const { isEmpty } = require('../utils/helpers.js');
 const { validateWarehouse } = require('../utils/validation.js');
 
+exports.getAllWarehouses = (_req, res) => {
+    let formattedWarehouses = warehouseModel.getAll()
+        .map(warehouse => {
+            return {
+                "id": warehouse.id,
+                "name": warehouse.name,
+                "address": `${warehouse.address}, ${warehouse.city}, ${warehouse.country}`,
+                "contactName": warehouse.contact.name,
+                "contactPhone": warehouse.contact.phone,
+                "contactEmail": warehouse.contact.email
+            }
+        })
+    
+    res.status(200).json(formattedWarehouses)
+};
+
 exports.addWarehouse = (req, res) => {
     const data = req.body
     if (!isEmpty(data)) {
