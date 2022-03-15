@@ -20,27 +20,12 @@ exports.getAllWarehouses = (_req, res) => {
 };
 
 exports.addWarehouse = (req, res) => {
-    const data = req.body
+    const data = req.body;
     if (!isEmpty(data)) {
         if (validateWarehouse(data)) {
-            const id = uuidv4()
-    
-            const warehouse = {
-                "id": id,
-                "name": data.name,
-                "address": data.address,
-                "city": data.city,
-                "country": data.country,
-                "contact": {
-                    "name": data.contactName,
-                    "position": data.contactPosition,
-                    "phone": data.contactPhone,
-                    "email": data.contactEmail
-                }
-            }
-    
-            warehouseModel.addOne(warehouse);
-            res.status(200).json({ "id": id });
+            data.id = uuidv4();
+            warehouseModel.addOne(formatWarehouse(data));
+            res.status(201).json({ "id": data.id });
         } else {
             res.status(400).json({ "error": "validation failed" });
         }
@@ -48,4 +33,41 @@ exports.addWarehouse = (req, res) => {
     else {
         res.status(400).send({ message: 'improperly formatted request' });
     }
+}
+
+exports.editWarehouse = (req, res) => {
+    const data = req.body;
+    const id = req.params.warehouseId;
+    if (!isEmpty(data) || id === '') {
+        if (validateWarehouse(data)) {    
+            data.id = id;
+            if (warehouseModel.editOne(formatWarehouse(data))) {
+                res.status(200).json({ "id": id });
+            } else {
+                res.status(404).json({"error": "warehouse not found"});
+            }
+        } else {
+            res.status(400).json({ "error": "validation failed" });
+        }
+    }
+    else {
+        res.status(400).send({ message: 'improperly formatted request' });
+    }  
+}
+
+const formatWarehouse = (data) => {
+    const warehouse = {
+        "id": data.id,
+        "name": data.name,
+        "address": data.address,
+        "city": data.city,
+        "country": data.country,
+        "contact": {
+            "name": data.contactName,
+            "position": data.contactPosition,
+            "phone": data.contactPhone,
+            "email": data.contactEmail
+        }
+    }
+    return warehouse;
 }
