@@ -9,9 +9,7 @@ router
 
 router
     .route('/:warehouseId')
-    .get((req, res) => {
-        res.status(200).send('warehouse by id get')
-    })
+    .get(warehouseController.getIndividualWarehouse)
     .post(warehouseController.editWarehouse);
 
 router

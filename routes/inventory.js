@@ -1,4 +1,5 @@
 const express = require('express');
+const inventoryController = require('../controllers/inventory-controller.js');
 const router = express.Router();
 const inventoryController = require('../controllers/inventory-controller.js');
 
@@ -11,9 +12,7 @@ router
     
 router
     .route('/:inventoryId')
-    .get((req, res) => {
-        res.status(200).send('inventory by id get')
-    })
+    .get(inventoryController.getIndividualInventory)
     .put(inventoryController.editInventory);
 
 module.exports = router;

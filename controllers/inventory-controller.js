@@ -35,6 +35,19 @@ exports.editInventory = (req, res) => {
     }  
 }
 
+exports.getIndividualInventory = (req, res) => {
+    const inventory = inventoryModel.getAll().find(
+        (inventory) => inventory.id === req.params.inventoryId
+    );
+
+    if (inventory) {
+    res.status(200).json(inventory);
+    }
+    else {
+    res.status(400).json({message: "No Inventory was found with the provided Id"});
+  }
+}
+
 const formatInventory = (data) => {
     const inventory = {
         "id": data.id,
