@@ -12,8 +12,6 @@ router
     .get((req, res) => {
         res.status(200).send('warehouse by id get')
     })
-    .post((req, res) => {
-        res.status(200).send('warehouse by id post')
-    })
+    .post(warehouseController.editWarehouse);
 
 module.exports = router;
