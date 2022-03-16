@@ -14,3 +14,17 @@ exports.validateWarehouse = (warehouse) => {
         return true
     }
 }
+
+exports.validateInventory = (inventory) => {
+    const empty = Object.values(inventory).filter(field => {
+        if (field.length < 1) {
+            return 1
+        }
+    })
+    const quantityValid = typeof inventory.quantity === "number" ? true : false;
+    if (empty.length > 0 || !quantityValid) {
+        return false
+    } else {
+        return true
+    }
+}
