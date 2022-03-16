@@ -19,6 +19,19 @@ exports.getAllWarehouses = (_req, res) => {
     res.status(200).json(formattedWarehouses)
 };
 
+exports.getIndividualWarehouse = (req, res) =>{
+    const warehouse = warehouseModel.getAll().find(
+        (warehouse) => warehouse.id === req.params.warehouseId
+    );
+
+    if (warehouse) {
+        res.status(200).json(warehouse);
+    }
+    else {
+        res.status(400).json({message: "No Warehouse was found with the provided Id"});
+    }
+}
+
 exports.addWarehouse = (req, res) => {
     const data = req.body;
     if (!isEmpty(data)) {
