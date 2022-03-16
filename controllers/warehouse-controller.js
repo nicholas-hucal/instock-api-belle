@@ -38,7 +38,7 @@ exports.addWarehouse = (req, res) => {
 exports.editWarehouse = (req, res) => {
     const data = req.body;
     const id = req.params.warehouseId;
-    if (!isEmpty(data) || id === '') {
+    if (!isEmpty(data) || id !== '') {
         if (validateWarehouse(data)) {    
             data.id = id;
             if (warehouseModel.editOne(formatWarehouse(data))) {
@@ -53,6 +53,16 @@ exports.editWarehouse = (req, res) => {
     else {
         res.status(400).send({ message: 'improperly formatted request' });
     }  
+}
+
+exports.getWarehouseInventories = (req, res) => {
+    const id = req.params.warehouseId;
+    if (!id || id !== '') {
+        const inventories = warehouseModel.getWarehouseInventories(id);
+        res.status(200).json({"inventories": inventories});
+    } else {
+        res.status(400).send({ message: 'improperly formatted request' });
+    }
 }
 
 const formatWarehouse = (data) => {
