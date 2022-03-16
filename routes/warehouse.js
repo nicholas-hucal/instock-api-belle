@@ -14,4 +14,8 @@ router
     })
     .post(warehouseController.editWarehouse);
 
+router
+    .route('/:warehouseId/inventory')
+    .get(warehouseController.getWarehouseInventories)
+
 module.exports = router;

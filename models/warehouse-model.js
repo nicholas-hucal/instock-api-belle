@@ -1,4 +1,5 @@
 const fs = require('fs');
+const inventoryModel = require('./inventory-model.js');
 
 exports.addOne = (warehouse) => {
     exports.saveAll(warehouse);
@@ -18,6 +19,11 @@ exports.editOne = (warehouse) => {
 exports.getAll = () => {
     const warehouses = fs.readFileSync('./data/warehouses.json');
     return JSON.parse(warehouses)
+}
+
+exports.getWarehouseInventories = (warehouseId) => {
+    const inventories = inventoryModel.getAll();
+    return inventories.filter(inventory => inventory.warehouseID === warehouseId);
 }
 
 exports.saveAll = (warehouse) => {
