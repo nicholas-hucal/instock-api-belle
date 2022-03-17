@@ -102,31 +102,5 @@
             "phone": "+1 (646) 123-1234",
             "email": "vmendoza@instock.com"
         }
-    },
-    {
-        "id": "dc732fac-0f2b-49fe-994b-f58b1855975c",
-        "name": "manhattan",
-        "address": "503 Broadway",
-        "city": "New York",
-        "country": "USA",
-        "contact": {
-            "name": "Parmin Aujla",
-            "position": "Warehouse Manager",
-            "phone": "(646) 123-1234",
-            "email": "paujl@ainstock.com"
-        }
-    },
-    {
-        "id": "afc0a837-7711-4830-8b87-c9da4aa5e73b",
-        "name": "manhattan",
-        "address": "503 Broadway",
-        "city": "New York",
-        "country": "USA",
-        "contact": {
-            "name": "Parmin Aujla",
-            "position": "Warehouse Manager",
-            "phone": "(646) 123-1234",
-            "email": "paujl@ainstock.com"
-        }
     }
 ]
