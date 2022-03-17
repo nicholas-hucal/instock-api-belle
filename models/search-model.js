@@ -19,6 +19,8 @@ exports.doSearch = (search) => {
                 return warehouse;
             }
         })
+
+        result = result.map(warehouse => formatWarehouse(warehouse));
     }
 
     if (search.type === 'inventory') {
@@ -35,4 +37,17 @@ exports.doSearch = (search) => {
     }
 
     return result;
+}
+
+
+const formatWarehouse = (data) => {
+    const warehouse = {
+        "id": data.id,
+        "name": data.name,
+        "address": `${data.address}, ${data.city}, ${data.country}`,
+        "contactName": data.contact.name,
+        "contactPhone": data.contact.phone,
+        "contactEmail": data.contact.email
+    }
+    return warehouse;
 }
