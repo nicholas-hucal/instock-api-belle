@@ -16,6 +16,9 @@ app.use('/warehouse', warehouseRoute);
 const inventoryRoute = require('./routes/inventory');
 app.use('/inventory', inventoryRoute);
 
+const searchRoute = require('./routes/search');
+app.use('/search', searchRoute);
+
 // LISTEN
 app.listen(process.env.PORT, () => {
     console.log('InStock Server Running');
