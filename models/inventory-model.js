@@ -24,6 +24,11 @@ exports.editOne = (inventory) => {
 }
 
 exports.deleteOne = (id) => {
-    const newInventory = exports.getAll().filter((item) => item.id !== id);
-    fs.writeFileSync('./data/inventories.json', JSON.stringify(newInventory));
+    const deleteInventories = exports.getAll().filter((item) => item.id !== id)
+    fs.writeFileSync('./data/inventories.json', JSON.stringify(deleteInventories))
+}
+
+exports.deleteWarehouseInventories = (warehouseId) => {
+    const deleteInventories = exports.getAll().filter((inventory) => inventory.warehouseID !== warehouseId)
+    fs.writeFileSync('./data/inventories.json', JSON.stringify(deleteInventories))
 }

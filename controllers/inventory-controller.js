@@ -69,4 +69,4 @@ exports.getAllInventory = (req, res) => {
 exports.deleteInventoryItem = (req, res) => {
   inventoryModel.deleteOne(req.params.inventoryId);
   res.status(200).json({ message: `${req.params.inventoryId} has been deleted.` });
-}
+};
