@@ -10,7 +10,8 @@ router
 router
     .route('/:warehouseId')
     .get(warehouseController.getIndividualWarehouse)
-    .put(warehouseController.editWarehouse);
+    .put(warehouseController.editWarehouse)
+    .delete(warehouseController.deleteWarehouse)
 
 router
     .route('/:warehouseId/inventory')
