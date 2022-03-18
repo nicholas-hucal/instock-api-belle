@@ -4,14 +4,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get((req, res) => {
-        res.status(200).send('inventory get')
-    })
+    .get(inventoryController.getAllInventory)
     .post(inventoryController.addInventory);
     
 router
     .route('/:inventoryId')
     .get(inventoryController.getIndividualInventory)
-    .put(inventoryController.editInventory);
+    .put(inventoryController.editInventory)
+    .delete(inventoryController.deleteInventoryItem)
 
 module.exports = router;

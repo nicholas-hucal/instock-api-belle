@@ -3,6 +3,20 @@ const inventoryModel = require('../models/inventory-model');
 const { isEmpty } = require('../utils/helpers.js');
 const { validateInventory } = require('../utils/validation.js');
 
+const formatInventory = (data) => {
+  const inventory = {
+      "id": data.id,
+      "warehouseID": data.warehouseID,
+      "warehouseName": data.warehouseName,
+      "itemName": data.itemName,
+      "description": data.description,
+      "category": data.category,
+      "status": data.status,
+      "quantity": data.quantity
+  }
+  return inventory;
+} 
+
 exports.addInventory = (req, res) => {
     const data = req.body;
     if (!isEmpty(data)) {
@@ -48,20 +62,11 @@ exports.getIndividualInventory = (req, res) => {
   }
 }
 
-exports.deleteInventories = (req, res) => {
-    inventoryModel.getAllIn(req.params.warehouseId)
+exports.getAllInventory = (req, res) => {
+  res.status(200).json(inventoryModel.getAll())
 }
 
-const formatInventory = (data) => {
-    const inventory = {
-        "id": data.id,
-        "warehouseID": data.warehouseID,
-        "warehouseName": data.warehouseName,
-        "itemName": data.itemName,
-        "description": data.description,
-        "category": data.category,
-        "status": data.status,
-        "quantity": data.quantity
-    }
-    return inventory;
-}
+exports.deleteInventoryItem = (req, res) => {
+  inventoryModel.deleteOne(req.params.inventoryId);
+  res.status(200).json({ message: `${req.params.inventoryId} has been deleted.` });
+};
