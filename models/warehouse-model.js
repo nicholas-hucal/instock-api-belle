@@ -21,6 +21,12 @@ exports.getAll = () => {
     return JSON.parse(warehouses)
 }
 
+exports.deleteOne = (id) => {
+    const warehouses = exports.getAll().filter((warehouse) => warehouse.id !== id)
+    fs.writeFileSync('./data/warehouses.json', JSON.stringify(warehouses))
+    return true;
+}
+
 exports.getWarehouseInventories = (warehouseId) => {
     const inventories = inventoryModel.getAll();
     return inventories.filter(inventory => inventory.warehouseID === warehouseId);

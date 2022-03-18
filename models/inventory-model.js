@@ -22,3 +22,13 @@ exports.editOne = (inventory) => {
     allInventory[foundIndex] = inventory;
     fs.writeFileSync('./data/inventories.json', JSON.stringify(allInventory));
 }
+
+exports.deleteOne = (id) => {
+    const deleteInventories = exports.getAll().filter((item) => item.id !== id)
+    fs.writeFileSync('./data/inventories.json', JSON.stringify(deleteInventories))
+}
+
+exports.deleteWarehouseInventories = (warehouseId) => {
+    const deleteInventories = exports.getAll().filter((inventory) => inventory.warehouseID !== warehouseId)
+    fs.writeFileSync('./data/inventories.json', JSON.stringify(deleteInventories))
+}

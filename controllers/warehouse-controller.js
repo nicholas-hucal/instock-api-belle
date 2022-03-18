@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const warehouseModel = require('../models/warehouse-model');
+const inventoryModel = require('../models/inventory-model')
 const { isEmpty } = require('../utils/helpers.js');
 const { validateWarehouse } = require('../utils/validation.js');
 
@@ -31,6 +32,13 @@ exports.getIndividualWarehouse = (req, res) =>{
         res.status(400).json({message: "No Warehouse was found with the provided Id"});
     }
 }
+
+exports.deleteWarehouse = (req, res) => {
+    warehouseModel.deleteOne(req.params.warehouseId);
+    inventoryModel.deleteWarehouseInventories(req.params.warehouseId)
+    res.status(200).json({message: "warehouse and it's inventories deleted"})
+}
+
 
 exports.addWarehouse = (req, res) => {
     const data = req.body;

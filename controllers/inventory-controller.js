@@ -48,6 +48,10 @@ exports.getIndividualInventory = (req, res) => {
   }
 }
 
+exports.deleteInventories = (req, res) => {
+    inventoryModel.getAllIn(req.params.warehouseId)
+}
+
 const formatInventory = (data) => {
     const inventory = {
         "id": data.id,
