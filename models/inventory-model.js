@@ -22,3 +22,8 @@ exports.editOne = (inventory) => {
     allInventory[foundIndex] = inventory;
     fs.writeFileSync('./data/inventories.json', JSON.stringify(allInventory));
 }
+
+exports.deleteOne = (id) => {
+    const newInventory = exports.getAll().filter((item) => item.id !== id);
+    fs.writeFileSync('./data/inventories.json', JSON.stringify(newInventory));
+}

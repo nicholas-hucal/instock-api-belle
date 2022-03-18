@@ -67,7 +67,6 @@ exports.getAllInventory = (req, res) => {
 }
 
 exports.deleteInventoryItem = (req, res) => {
-  const newInventory = inventoryModel.getAll().filter(
-    (item) => item.id !== req.body.data.id 
-  )
+  inventoryModel.deleteOne(req.params.inventoryId);
+  res.status(200).json({ message: `${req.params.inventoryId} has been deleted.` });
 }

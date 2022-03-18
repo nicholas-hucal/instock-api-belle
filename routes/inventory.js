@@ -10,6 +10,7 @@ router
 router
     .route('/:inventoryId')
     .get(inventoryController.getIndividualInventory)
-    .put(inventoryController.editInventory);
+    .put(inventoryController.editInventory)
+    .delete(inventoryController.deleteInventoryItem)
 
 module.exports = router;
