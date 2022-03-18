@@ -5,16 +5,11 @@ const router = express.Router();
 router
     .route('/')
     .get(inventoryController.getAllInventory)
-    .post((req, res) => {
-        res.status(200).send('inventory post')
-    })
+    .post(inventoryController.addInventory);
     
 router
     .route('/:inventoryId')
     .get(inventoryController.getIndividualInventory)
-    .post((req, res) => {
-        res.status(200).send('inventory by id post')
-    })
-
+    .put(inventoryController.editInventory);
 
 module.exports = router;
