@@ -4,9 +4,7 @@ const router = express.Router();
 
 router
     .route('/')
-    .get((req, res) => {
-        res.status(200).send('inventory get')
-    })
+    .get(inventoryController.getAllInventory)
     .post((req, res) => {
         res.status(200).send('inventory post')
     })

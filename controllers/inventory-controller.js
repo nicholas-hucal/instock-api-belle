@@ -12,3 +12,7 @@ exports.getIndividualInventory = (req, res) => {
     res.status(400).json({message: "No Inventory was found with the provided Id"});
   }
 }
+
+exports.getAllInventory = (req, res) => {
+  res.status(200).json(inventoryModel.getAll())
+}
